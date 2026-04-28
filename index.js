@@ -1,4 +1,11 @@
 // index.js
+/* 
+COMANDO A INGRESAR POR CONSOLA
+npm run start GET products
+npm run start GET products/5
+npm run start POST products "Remera" 200 ropa
+npm run start DELETE products/5
+*/
 const args = process.argv.slice(2);
 const [method, resource, ...params] = args;
 
@@ -11,13 +18,18 @@ async function main() {
         // GET products
         const res = await fetch(`${BASE_URL}/products`);
         const data = await res.json();
-        console.log(data);
+        //console.table(data);
+        // En lugar de mostrar TODO el objeto del producto...
+        console.log("📦 Lista de Productos:");        
+        console.table(data, ["id", "title", "price","category"]);
       } else if (resource.startsWith("products/")) {
         // GET products/:id
         const productId = resource.split("/")[1];
         const res = await fetch(`${BASE_URL}/products/${productId}`);
         const data = await res.json();
-        console.log(data);
+        // console.table(data);
+         console.log("📦 Detalle del Producto:"); 
+        console.table([data], ["id", "title", "price"]);
       }
     }
 
@@ -33,7 +45,9 @@ async function main() {
         headers: { "Content-Type": "application/json" }
       });
       const data = await res.json();
-      console.log(data);
+      // console.log(data);
+      console.log("📦 Detalle del Producto POST:");
+      console.table([data], ["id", "title", "price","category"]);
     }
 
     else if (method === "DELETE" && resource.startsWith("products/")) {
@@ -43,13 +57,22 @@ async function main() {
       });
       const data = await res.json();
       console.log(data);
+      //------------------------------------
+      if (data) {
+      console.log(`✨ Éxito: El producto con ID ${productId} ha sido eliminado.`);
+      console.table([data], ["id", "title", "price","category"]);
+      } else {
+      console.log("⚠️ El servidor no devolvió datos del producto eliminado.");
+      }
+
+      //---------------------------
     }
 
     else {
-      console.log("Comando no reconocido. Revisa la sintaxis.");
+      console.log("⚠️Comando no reconocido. Revisa la sintaxis.");
     }
   } catch (error) {
-    console.error("Error:", error.message);
+    console.error("❌Error:", error.message);
   }
 }
 

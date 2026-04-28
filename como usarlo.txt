@@ -1,0 +1,17 @@
+Cómo usarlo (IMPORTANTE)
+✔ Obtener todos:
+npm run start GET products
+✔ Obtener uno:
+npm run start GET products/15
+✔ Crear:
+npm run start POST products "T-Shirt-Rex" 300 remeras
+✔ Eliminar:
+npm run start DELETE products/7
+
+
+COMANDO FINALES 
+npm run start GET products
+npm run start GET products/5
+npm run start POST products "Remera" 200 ropa
+npm run start PUT products/5 "Nueva-Remera" 300 ropa
+npm run start DELETE products/5
