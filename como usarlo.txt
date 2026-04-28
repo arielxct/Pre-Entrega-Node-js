@@ -9,7 +9,7 @@ npm run start POST products "T-Shirt-Rex" 300 remeras
 npm run start DELETE products/7
 
 
-COMANDO FINALES 
+COMANDO FINALES A INGRESAR POR CONSOLA
 npm run start GET products
 npm run start GET products/5
 npm run start POST products "Remera" 200 ropa

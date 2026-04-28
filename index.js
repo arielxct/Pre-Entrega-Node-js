@@ -46,7 +46,7 @@ async function main() {
       });
       const data = await res.json();
       // console.log(data);
-      console.log("📦 Detalle del Producto POST:");
+      console.log("📦 Detalle del Producto nuevo:");
       console.table([data], ["id", "title", "price","category"]);
     }
 
