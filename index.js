@@ -15,11 +15,8 @@ async function main() {
   try {
     if (method === "GET") {
       if (resource === "products") {
-        // GET products
         const res = await fetch(`${BASE_URL}/products`);
         const data = await res.json();
-        //console.table(data);
-        // En lugar de mostrar TODO el objeto del producto...
         console.log("📦 Lista de Productos:");        
         console.table(data, ["id", "title", "price","category"]);
       } else if (resource.startsWith("products/")) {
@@ -27,7 +24,7 @@ async function main() {
         const productId = resource.split("/")[1];
         const res = await fetch(`${BASE_URL}/products/${productId}`);
         const data = await res.json();
-        // console.table(data);
+        
          console.log("📦 Detalle del Producto:"); 
         console.table([data], ["id", "title", "price"]);
       }
@@ -45,7 +42,6 @@ async function main() {
         headers: { "Content-Type": "application/json" }
       });
       const data = await res.json();
-      // console.log(data);
       console.log("📦 Detalle del Producto nuevo:");
       console.table([data], ["id", "title", "price","category"]);
     }
